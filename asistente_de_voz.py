@@ -11,7 +11,7 @@ import wikipedia #pyhton
 #Nombre asistente:
 name = "Ania"
 
-#objeto de renocimiento de voz:
+#Objeto de renocimiento de voz:
 audio_recognizer = sr.Recognizer()
 
 #Iniciando pyttsx3 (voz del asistente):
@@ -24,6 +24,9 @@ engine.setProperty("voice", voices[0].id)
 
 #Función de reconocer audio:
 def listener():
+
+    """Reconoce y captura el audio del usuario.
+    Return. Devuelve el audio del usuario transformado en texto"""
     
     try:
         
@@ -50,20 +53,30 @@ def listener():
     #En caso de error inesperado:
     except:
         speaker("Lo siento, no he entendido lo que dices")
-           
+
+
 #Dar voz al asistente:
 def speaker(message):
+
+    """Empleada para que el asistente reproduzca un mensaje en voz."""
     
     engine.say(message)
     engine.runAndWait()
-      
-#Creando saluddo inicial:      
+
+
+#Creando saludo inicial:      
 def start_greeting():
+
+    "Genera el saludo inicial del asistente."
+    
     greeting = f"Hola, soy {name} tu asistente virtual, ¿en que te puedo ayudar?"
     speaker(greeting)
 
+
 #Función para obtener la fecha actual
 def ask_for_day():
+
+    "Proporciona la fecha actual."
     
     date = datetime.date 
     
@@ -77,15 +90,21 @@ def ask_for_day():
                      6: "Domingo"}
     
     speaker(f"El día de hoy es {weekdays_name[day]} {date.today()}")
-    
+
+
 #Función para obtener la hora actual    
 def ask_for_time():
+
+    "Proporciona la hora actual."
+    
     time = datetime.datetime
     speaker(f"La hora es {time.now().hour} y {time.now().minute}")
     
 
 #Función para iniciar al asistente:
 def run_assistant():
+
+    "Ejecuta el bucle principal del asistente, escuchando y procesando los comandos proporcionados por el usuario."
     
     start_greeting()
     
